@@ -1,7 +1,6 @@
 class Api::V1::ForecastController < ApplicationController
   def index
-    forecast_hash = DarkSkyService.forecast(params[:location])
-    forecast = Forecast.new(forecast_hash)
-    render json: ForecastSerializer.new(forecast)
+    facade = ForecastFacade.new(params[:location]).forecast
+    render json: ForecastSerializer.new(facade)
   end
 end
