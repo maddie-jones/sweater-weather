@@ -5,7 +5,7 @@ describe 'Weather API' do
     location = "denver,co"
 
     get "/api/v1/forecast?location=#{location}"
-
+    
     forecast_json = JSON.parse(response.body)
 
     expect(response).to be_successful
