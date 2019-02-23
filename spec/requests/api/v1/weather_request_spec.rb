@@ -9,6 +9,5 @@ describe 'Weather API', :vcr do
     forecast_json = JSON.parse(response.body)
 
     expect(response).to be_successful
-    #add better test
   end
 end

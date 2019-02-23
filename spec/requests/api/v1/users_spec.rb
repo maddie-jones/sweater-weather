@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 describe 'Users API' do
-  xit 'Can get weather by location' do
+  it 'can create user' do
+    params = {user: { email: "whatever@example.com",
+               password: "password",
+               password_confirmation: "password"}}
 
+    post "/api/v1/users", params: params
 
-    post "/api/v1/users"
-
-    forecast_json = JSON.parse(response.body)
-
-    expect(response).to be_successful
-    #add better test
+    user = User.last
+    expect(user.email).to eq("whatever@example.com")
   end
 end
