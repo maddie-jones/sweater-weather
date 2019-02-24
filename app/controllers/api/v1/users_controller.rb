@@ -7,7 +7,7 @@ class Api::V1::UsersController < ApplicationController
   def show
     user = User.find(params[:id])
     api_key = ApiKey.new(user)
-    api_serialized = ApiSerializer.new(api_key)
+    render json: ApiSerializer.new(api_key)
   end
 
   private
