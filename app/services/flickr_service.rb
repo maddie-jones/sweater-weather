@@ -7,6 +7,7 @@ class FlickrService
       faraday.params[:lat] = lat
       faraday.params[:lon] = lon
       faraday.params[:format] = "json"
+      faraday.params[:sort] = "relevance"
     end
     response = conn.get '/services/rest'
     json = response.body.gsub("jsonFlickrApi(", "").chop
