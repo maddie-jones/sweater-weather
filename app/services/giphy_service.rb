@@ -1,6 +1,5 @@
 class GiphyService
-  def self.weather_gifs(location)
-    query = DarkSkyService.forecast(location)[:daily][:icon]
+  def self.weather_gifs(query)
     conn = Faraday.new(url: 'http://api.giphy.com') do |faraday|
       faraday.adapter  Faraday.default_adapter
       faraday.params[:api_key] = ENV["GIPHY_API_KEY"]
