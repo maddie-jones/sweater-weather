@@ -3,8 +3,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       get "forecast", to: "forecast#index"
       post "users", to: "users#create"
-      get "users/:id", to: "users#show"
+      post "sessions", to: "sessions#create"
       get "backgrounds", to: "backgrounds#index"
+      get "gifs", to: "gifs#index"
     end
   end
 end
