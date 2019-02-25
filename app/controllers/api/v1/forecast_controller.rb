@@ -1,7 +1,6 @@
 class Api::V1::ForecastController < ApplicationController
   def index
-    location = GoogleGeocodeService.new(params[:location])
-    forecast = DarkSkyFacade.current_forecast(location)
-    render json: ForecastSerializer.new(forecast)
+    facade = ForecastFacade.new(params[:location]).forecast
+    render json: ForecastSerializer.new(facade)
   end
 end
