@@ -4,7 +4,7 @@ class GifsFacade
   end
 
   def gif
-    service[:data][0][:url]
+    service[:data][rand 0..5][:url]
   end
 
   def service

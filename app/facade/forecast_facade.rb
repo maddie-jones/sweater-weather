@@ -21,7 +21,7 @@ class ForecastFacade
 
   def gifs
     service[:daily][:data].map do |time|
-      GifsFacade.new(time[:icon]).gif
+      GifsFacade.new(time[:summary]).gif
     end
   end
 
