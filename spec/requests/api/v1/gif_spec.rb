@@ -7,8 +7,9 @@ describe 'Weather API', :vcr do
     get "/api/v1/gifs?location=#{location}"
 
     gif_json = JSON.parse(response.body)
-    binding.pry
+
     expect(response).to be_successful
+    expect(git_json["date"]["images"].count).to eq(5)
   end
 end
 
