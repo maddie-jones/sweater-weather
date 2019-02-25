@@ -3,8 +3,28 @@ class ForecastFacade
     @location = location
   end
 
+  def current_weather
+    Forecast.new(service).current_weather
+  end
+
+  def daily_weather
+    Forecast.new(service).daily_weather[:data]
+  end
+
+  def minute_weather
+    Forecast.new(service).minute_weather[:data]
+  end
+
+  def hour_weather
+    Forecast.new(service).hour_weather[:data]
+  end
+
   def forecast
-    Forecast.new(service)
+    [{current_weather: current_weather},
+     {daily_weather: daily_weather},
+     {hour_weather: hour_weather},
+     {minute_weather: minute_weather}
+     ]
   end
 
   def times
