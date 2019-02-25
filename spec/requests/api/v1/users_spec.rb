@@ -8,16 +8,10 @@ describe 'Users API' do
 
     post "/api/v1/users", params: params
 
-    user = User.last
-    expect(user.email).to eq("whatever@example.com")
-  end
-  it 'can get api for user' do
-    user = User.create(email: "maddy@gmail.com", password: "hello", password_confirmation: "hello")
+    expect(response).to have_http_status(:created)
 
-    get "/api/v1/users/#{user.id}"
+    user = User.find_by(email: params[:user][:email])
 
-    api_json = JSON.parse(response.body)
-
-    expect(response).to be_successful
+    expect(JSON.parse(response.body)).to eq({"api_key" => user.api_key})
   end
 end
