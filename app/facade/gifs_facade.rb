@@ -1,6 +1,6 @@
 class GifsFacade
-  def initialize(location)
-    @location = location
+  def initialize(query)
+    @query = query
   end
 
   def gif
@@ -8,6 +8,6 @@ class GifsFacade
   end
 
   def service
-    GiphyService.weather_gifs(@location)
+    GiphyService.weather_gifs(@query)
   end
 end
