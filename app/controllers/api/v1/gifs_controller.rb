@@ -1,29 +1,24 @@
 class Api::V1::GifsController < ApplicationController
   def index
-    gifs = DarkSkyService.forecast(params[:location])[:daily][:data].map do |time|
-      GifsFacade.new(time[:icon]).gif
-    end
-    time = DarkSkyService.forecast(params[:location])[:daily][:data].map do |time|
-      time[:time]
-    end
-    summary = DarkSkyService.forecast(params[:location])[:daily][:data].map do |time|
-      time[:summary]
-    end
-    render status: :ok, json: {data: {images: [{ time: time[0],
-                                                 summary: summary[0],
+    gifs = ForecastFacade.new(params[:location]).gifs
+    times = ForecastFacade.new(params[:location]).times
+    summaries = ForecastFacade.new(params[:location]).summaries
+    render status: :ok, json: {data: {images: [{ time: times[0],
+                                                 summary: summaries[0],
                                                  url: gifs[0]},
-                                               { time: time[1],
-                                                 summary: summary[1],
+                                               { time: times[1],
+                                                 summary: summaries[1],
                                                  url: gifs[1]},
-                                               { time: time[2],
-                                                 summary: summary[2],
+                                               { time: times[2],
+                                                 summary: summaries[2],
                                                  url: gifs[2]},
-                                               { time: time[3],
-                                                 summary: summary[3],
+                                               { time: times[3],
+                                                 summary: summaries[3],
                                                  url: gifs[3]},
-                                               { time: time[4],
-                                                 summary: summary[4],
+                                               { time: times[4],
+                                                 summary: summaries[4],
                                                  url: gifs[4]}
-                                                   ]}}
+                                                   ]},
+                                                 copyright: "2019"}
   end
 end
