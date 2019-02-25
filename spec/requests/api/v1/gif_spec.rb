@@ -9,7 +9,7 @@ describe 'Weather API', :vcr do
     gif_json = JSON.parse(response.body)
 
     expect(response).to be_successful
-    expect(git_json["date"]["images"].count).to eq(5)
+    expect(gif_json["data"]["images"].count).to eq(5)
   end
 end
 
