@@ -32,14 +32,23 @@ describe 'Favorites API', :vcr do
     expect(favorites_json["data"][1]["attributes"]).to have_key("current_weather")
   end
 
-end
+  it 'can delete location' do
+    user_1 = User.create(password: "password", email: "whatever@example.com", password_confirmation: "password")
+    favorite_1 = user_1.favorites.create(location: "Denver , CO")
+    favorite_2 = user_1.favorites.create(location: "Denver , CO")
 
-# GET /api/v1/favorites
-# Content-Type: application/json
-# Accept: application/json
-#
-# body:
-#
-# {
-#   "api_key": "jgn983hy48thw9begh98h4539h4"
-# }
+    params = {
+              location: "Denver, CO",
+              api_key: user_1.api_key
+    }
+    expect(user_1.favorites.count).to eq(2)
+
+    delete "/api/v1/favorites", params: params
+
+    deleted_json = JSON.parse(response.body)
+    expect(response).to be_successful
+    expect(user_1.favorites.count).to eq(1)
+    expect(deleted_json["data"]["attributes"]).to have_key("location")
+    expect(deleted_json["data"]["attributes"]["location"]).to eq(params[:location])
+  end
+end
