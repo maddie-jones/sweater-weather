@@ -6,7 +6,10 @@ class Api::V1::FavoritesController < ApplicationController
 
   def index
     user = User.find_by(api_key: params[:api_key])
-    favorites = FavoriteFacade.new(user.favorites[0].location)
+    favorites = user.favorites.map do |favorite|
+                  location = favorite.location
+                  FavoriteFacade.new(location)
+                end
     render json: FavoritesSerializer.new(favorites)
   end
 end

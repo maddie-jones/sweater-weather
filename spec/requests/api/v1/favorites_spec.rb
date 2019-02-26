@@ -28,8 +28,8 @@ describe 'Favorites API', :vcr do
     favorites_json = JSON.parse(response.body)
 
     expect(response).to be_successful
-    expect(favorites_json["data"]["attributes"]).to have_key("location")
-    expect(favorites_json["data"]["attributes"]).to have_key("current_weather")
+    expect(favorites_json["data"][0]["attributes"]).to have_key("location")
+    expect(favorites_json["data"][1]["attributes"]).to have_key("current_weather")
   end
 
 end
