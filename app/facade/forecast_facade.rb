@@ -14,6 +14,6 @@ class ForecastFacade
   end
 
   def images
-    {images: {}}
+    Image.new
   end
 end

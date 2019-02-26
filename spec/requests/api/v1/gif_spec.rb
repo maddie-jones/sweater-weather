@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Weather API', :vcr do
-  it 'Can get weather by location' do
+  xit 'Can get weather by location' do
     location = "denver,co"
 
     get "/api/v1/gifs?location=#{location}"

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get "backgrounds", to: "backgrounds#index"
       get "gifs", to: "gifs#index"
       post "favorites", to:"favorites#create"
+      get "favorites", to:"favorites#index"
     end
   end
 end
