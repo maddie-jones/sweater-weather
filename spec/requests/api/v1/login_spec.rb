@@ -15,6 +15,7 @@ describe 'Login Api', :vcr do
 
     expect(JSON.parse(response.body)).to eq({"api_key" => user_1.api_key})
   end
+  
   it 'cannot login user with wrong password' do
     user_1 = User.create(password: "password", email: "whatever@example.com", password_confirmation: "password")
     user_2 = User.create(password: "password", email: "maddie@example.com", password_confirmation: "password")
