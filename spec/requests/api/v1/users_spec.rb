@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Users API' do
+describe 'Users API', :vcr do
   it 'can create user' do
     params = {user: { email: "whatever@example.com",
                password: "password",

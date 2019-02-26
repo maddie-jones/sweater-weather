@@ -12,4 +12,8 @@ class ForecastFacade
     data = DarkSkyService.forecast(location)
     new(data)
   end
+
+  def images
+    {images: {}}
+  end
 end
