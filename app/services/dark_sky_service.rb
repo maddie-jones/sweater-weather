@@ -3,9 +3,10 @@ class DarkSkyService
     ENV['DARK_SKY_API_KEY']
   end
 
-  def self.forecast(zip)
-    geo_service = GoogleGeocodeService.new(zip)
-    get_json("/forecast/#{key}/#{geo_service.lat},#{geo_service.lng}")
+  def self.forecast(location)
+    geo_service = GoogleGeocodeService.new(location)
+    forecast = get_json("/forecast/#{key}/#{geo_service.lat},#{geo_service.lng}")
+    CompleteForecast.new(geo_service, forecast[:currently], forecast[:daily], forecast[:hourly])
   end
 
   private

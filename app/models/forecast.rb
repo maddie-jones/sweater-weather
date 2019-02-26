@@ -1,9 +1,12 @@
 class Forecast
-  attr_reader :id, :current_weather, :minute_weather, :hour_weather, :daily_weather
+  attr_reader :feels_like, :humidity, :time, :summary, :uv_index, :visibility, :temp
   def initialize(attributes)
-    @current_weather = attributes[:currently]
-    @minute_weather = attributes[:minutely]
-    @hour_weather = attributes[:hourly]
-    @daily_weather = attributes[:daily]
+    @feels_like = attributes[:apparentTemperature]
+    @time = attributes[:time]
+    @summary = attributes[:summary]
+    @humidity = attributes[:humidity]
+    @temp = attributes[:temperature]
+    @uv_index = attributes[:uvIndex]
+    @visibility = attributes[:visibility]
   end
 end

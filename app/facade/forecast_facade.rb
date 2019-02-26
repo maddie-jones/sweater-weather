@@ -20,11 +20,7 @@ class ForecastFacade
   end
 
   def forecast
-    [{current_weather: current_weather},
-     {daily_weather: daily_weather},
-     {hour_weather: hour_weather},
-     {minute_weather: minute_weather}
-     ]
+
   end
 
   def times
