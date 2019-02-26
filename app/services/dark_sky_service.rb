@@ -6,7 +6,6 @@ class DarkSkyService
   def self.forecast(location)
     geo_service = GoogleGeocodeService.new(location)
     forecast = get_json("/forecast/#{key}/#{geo_service.lat},#{geo_service.lng}")
-    CompleteForecast.new(geo_service, forecast[:currently], forecast[:daily], forecast[:hourly])
   end
 
   private

@@ -9,5 +9,6 @@ describe 'Weather API', :vcr do
     forecast_json = JSON.parse(response.body)
 
     expect(response).to be_successful
+    expect(forecast_json).to have_key("data")
   end
 end
