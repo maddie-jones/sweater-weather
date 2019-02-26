@@ -4,7 +4,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :email
   validates_presence_of :password
   validates_confirmation_of :password
-
+  has_many :favorites
   before_create :create_api_key
 
   private

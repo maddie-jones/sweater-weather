@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post "sessions", to: "sessions#create"
       get "backgrounds", to: "backgrounds#index"
       get "gifs", to: "gifs#index"
+      post "favorites", to:"favorites#create"
     end
   end
 end
