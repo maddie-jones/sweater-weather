@@ -10,6 +10,7 @@ require 'webmock/rspec'
 
 VCR.configure do |config|
   config.ignore_localhost = true
+  #config.default_cassette_options = {re_record_interval: 1.second}
   config.cassette_library_dir = 'spec/cassettes'
   config.hook_into :webmock
   config.configure_rspec_metadata!
