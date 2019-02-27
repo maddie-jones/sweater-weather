@@ -10,7 +10,11 @@ class Api::V1::FavoritesController < ApplicationController
                   location = favorite.location
                   FavoriteFacade.new(location)
                 end
-    render json: FavoritesSerializer.new(favorites)
+    if user
+      render json: FavoritesSerializer.new(favorites)
+    else
+      render status: :unauthorized, json: {error: "401 unauthorized"}
+    end
   end
 
   def delete
@@ -18,7 +22,11 @@ class Api::V1::FavoritesController < ApplicationController
     favorite = user.favorites.find_by(location: params[:location])
     current_weather = FavoriteFacade.new(params[:location])
     favorite.delete
-    render status: :ok, json: { location: favorite.location,
+    if user
+      render status: :ok, json: { location: favorite.location,
                                 current_weather: current_weather}
+    else
+      render status: :unauthorized, json: {error: "401 unauthorized"}
+    end
   end
 end
