@@ -34,8 +34,8 @@ describe 'Favorites API', :vcr do
 
   it 'can delete location' do
     user_1 = User.create(password: "password", email: "whatever@example.com", password_confirmation: "password")
-    favorite_1 = user_1.favorites.create(location: "Denver , CO")
-    favorite_2 = user_1.favorites.create(location: "Denver , CO")
+    favorite_1 = user_1.favorites.create(location: "Denver, CO")
+    favorite_2 = user_1.favorites.create(location: "Sacramento , CA")
 
     params = {
               location: "Denver, CO",
@@ -48,7 +48,7 @@ describe 'Favorites API', :vcr do
     deleted_json = JSON.parse(response.body)
     expect(response).to be_successful
     expect(user_1.favorites.count).to eq(1)
-    expect(deleted_json["data"]["attributes"]).to have_key("location")
-    expect(deleted_json["data"]["attributes"]["location"]).to eq(params[:location])
+    expect(deleted_json).to have_key("location")
+    expect(deleted_json["location"]).to eq(params[:location])
   end
 end
